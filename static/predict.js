@@ -128,7 +128,7 @@ $("#predict-button").click(async function () {
 		},
 		url: "/add-data",
 		success: function (reponse) {
-			console.log(response,"Anjay")
+			console.log(response,"Anjay aku bisa")
 			}
 		})
 });
