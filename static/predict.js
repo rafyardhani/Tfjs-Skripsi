@@ -11,6 +11,8 @@ $("#image-selector").change(function () {
 	
 	let file = $("#image-selector").prop('files')[0];
 	reader.readAsDataURL(file);
+	// console.log(file.name,"url")
+
 });
 
 let model;
@@ -52,7 +54,7 @@ $( document ).ready(async function () {
 $("#predict-button").click(async function () {
 	if (!modelLoaded) { alert("The model must be loaded first"); return; }
 	if (!imageLoaded) { alert("Please select an image first"); return; }
-	
+	let warna,bentuk,kristal;
 	let image = $('#selected-image').get(0);
 	
 	// Pre-process the image
@@ -77,6 +79,7 @@ $("#predict-button").click(async function () {
 	$("#prediction-list").empty();
 	top5.forEach(function (p) {
 		$("#prediction-list").append(`<li>Warna: ${p.className}: ${p.probability.toFixed(6)}</li>`);
+		warna = p.className;
 		});
 	
 	// Predict bentuk
@@ -93,6 +96,7 @@ $("#predict-button").click(async function () {
 		}).slice(0, 1);
 	topbentuk.forEach(function (p) {
 			$("#prediction-list").append(`<li>Bentuk: ${p.className}: ${p.probabilitybentuk.toFixed(6)}</li>`);
+			bentuk = p.className;
 			});
 	// Predict kristal
 	let predictionskristal = await modelkristal.predict(tensor).data();
@@ -108,6 +112,23 @@ $("#predict-button").click(async function () {
 		}).slice(0, 1);
 	topkristal.forEach(function (p) {
 			$("#prediction-list").append(`<li>Kristal: ${p.className}: ${p.probabilitykristal.toFixed(6)}</li>`);
+			kristal = p.className;
 			});
-	
+	// console.log(image,"anjay")
+
+	$.ajax({
+		type: "POST",
+		dataType: "json",
+		encode: true,
+		data: {
+		nama: $("#image-selector").prop('files')[0].name,
+		warna: warna,
+		bentuk: bentuk,
+		kristal: kristal
+		},
+		url: "/add-data",
+		success: function (reponse) {
+			console.log(response,"Anjay")
+			}
+		})
 });
