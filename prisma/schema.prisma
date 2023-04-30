@@ -9,3 +9,10 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+model data {
+  id   Int                   @id @default(autoincrement())
+  nama String
+  warna String
+  bentuk String
+  kristal String
+}
