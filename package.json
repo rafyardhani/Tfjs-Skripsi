@@ -9,5 +9,8 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rafyardhani/Tfjs-Skripsi.git"
+  },
+  "dependencies": {
+    "prisma": "^4.13.0"
   }
 }

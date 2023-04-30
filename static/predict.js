@@ -109,4 +109,5 @@ $("#predict-button").click(async function () {
 	topkristal.forEach(function (p) {
 			$("#prediction-list").append(`<li>Kristal: ${p.className}: ${p.probabilitykristal.toFixed(6)}</li>`);
 			});
+	
 });
