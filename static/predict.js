@@ -109,5 +109,21 @@ $("#predict-button").click(async function () {
 	topkristal.forEach(function (p) {
 			$("#prediction-list").append(`<li>Kristal: ${p.className}: ${p.probabilitykristal.toFixed(6)}</li>`);
 			});
-	
+	// console.log(image,"anjay")
+
+	$.ajax({
+		type: "POST",
+		dataType: "json",
+		encode: true,
+		data: {
+		nama: $("#image-selector").prop('files')[0].name,
+		warna: warna,
+		bentuk: bentuk,
+		kristal: kristal
+		},
+		url: "/add-data",
+		success: function (reponse) {
+			console.log(response,"Anjay")
+			}
+		})
 });
