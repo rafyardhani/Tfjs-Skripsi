@@ -6,6 +6,7 @@ $("#image-selector").change(function () {
 		let dataURL = reader.result;
 		$("#selected-image").attr("src", dataURL);
 		$("#prediction-list").empty();
+		$("#prediction").empty();
 		imageLoaded = true;
 	}
 	
@@ -116,19 +117,86 @@ $("#predict-button").click(async function () {
 			});
 	// console.log(image,"anjay")
 
+
+	switch (warna) {
+		case "coklat muda":
+			warna_encode = 0;
+			break;
+		case "coklat tua":
+			warna_encode = 1;
+			break;
+		case "hijau muda":
+			warna_encode = 2;
+			break;
+		default:
+			warna_encode = 3;
+			break;
+	}
+
+	switch (bentuk) {
+		case "cair":
+			bentuk_encode = 0;
+			break;
+		default:
+			bentuk_encode = 1;
+			break;
+	}
+
+	switch (kristal) {
+		case "tidak":
+			kristal_encode = 0;
+			break;
+		default:
+			kristal_encode = 1;
+			break;
+	}
+	let hasil, hasil_encode;
 	$.ajax({
 		type: "POST",
 		dataType: "json",
-		encode: true,
-		data: {
-		nama: $("#image-selector").prop('files')[0].name,
-		warna: warna,
-		bentuk: bentuk,
-		kristal: kristal
-		},
-		url: "/add-data",
-		success: function (reponse) {
-			console.log(response,"Anjay aku bisa")
+		contentType: "application/json",
+		// encode: true,
+		data: JSON.stringify({
+			"features": [warna_encode,bentuk_encode,kristal_encode]
+		}),
+		url: "http://127.0.0.1:5000/predict",
+		success: function (response) {
+			// console.log(response,"Anjay aku bisa")
+			hasil_encode = response.prediction
+			switch (hasil_encode) {
+				case 0:
+					hasil = "cocci"
+					break;
+				case 1:
+					hasil = "healthy"
+					break;
+				case 2:
+					hasil = "ncd";
+					break
+				default:
+					hasil = "salmo"
+					break;
+			}
+			// console.log(hasil)
+			$("#prediction").append(`Diagnosa penyakit: <b>${hasil}</b>`);
 			}
 		})
+	
+	// console.log(warna_encode,bentuk_encode,kristal_encode)
+	// input ke database
+	// $.ajax({
+	// 	type: "POST",
+	// 	dataType: "json",
+	// 	encode: true,
+	// 	data: {
+	// 	nama: $("#image-selector").prop('files')[0].name,
+	// 	warna: warna,
+	// 	bentuk: bentuk,
+	// 	kristal: kristal
+	// 	},
+	// 	url: "/add-data",
+	// 	success: function (response) {
+	// 		console.log(response,"Anjay aku bisa")
+	// 		}
+	// 	})
 });
