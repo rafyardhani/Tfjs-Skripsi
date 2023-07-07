@@ -178,6 +178,7 @@ $("#predict-button").click(async function () {
 					break;
 			}
 			// console.log(hasil)
+			$("#prediction").empty();
 			$("#prediction").append(`Diagnosa penyakit: <b>${hasil}</b>`);
 			}
 		})
