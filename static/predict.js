@@ -1,3 +1,34 @@
+rekomendasi_penanganan = {
+  0: [
+    "Pemisahan flok antara unggas muda dari unggas tua. Unggas muda ditempatkan pada flok tertentu yang bebas dari litter yang mengandung oocyst.",
+    "Meningkatkan sanitasi dan kebersihan kandang",
+    "Pembersihan dan kontrol litter/sekam. Litter sebaiknya diganti atau ditambah secara teratur dengan tujuan mengurangi konsentrasi feses atau cemaran oocys dalam litter. Litter diusahakan selalu dalam keadaan kering untuk mencegah oocyst bersporulasi.",
+    "Menjaga kecukupan udara dan ruang bagi unggas dengan mengatur ventilasi udara dan kepadatan ternak.",
+    "Isolasi dan mengobati unggas pada flok yang sakit dan memberikan pakan ternak yang mengandung coccidiocidal /coccidiostat tergantung tingkat keparahan penyakit pada satu flok.",
+    "Pengobatan Coccidiosis dapat dilakukan dengan pemberian obat-obatan yang bersifat coccidiostat atau coccidiocidal.",
+    "Pemberian coccidiocidal untuk mengobati kejadian Coccidiosis dinilai lebih berhasil daripada pemberian coccidiostat.",
+    "Pemberian obat-obatan coccidiostat dilakukan dengan mencampurkan ke dalam pakan atau air minum.",
+    "Terdapat banyak sediaan yang dapat digunakan untuk mengobati Coccidiosis pada unggas antara lain amprolium, clopidol, asam folat antagonis, halofuginone hydrobromida, ionophore, nicarbazine, nitrobenzamida, sulfaquinoxalin dan robenidine."
+  ],
+  1: [
+    "Poin 1: Langkah pertama penanganan penyakit 2",
+    "Poin 2: Langkah kedua penanganan penyakit 2",
+    "Poin 3: Langkah ketiga penanganan penyakit 2"
+  ],
+  2: [
+    "Membuat kondisi badan ayam cepat membaik dan merangsang nafsu makannya dengan memberikan tambahan vitamin dan mineral.",
+    "Mencegah infeksi sekunder dengan pemberian antibiotik.",
+    "Pencegahan   penyakit  dapat  dilakukan  dengan  vaksinasi  secara   teratur.",
+    "Menjaga kebersihan dan sanitasi kandang.",
+    "Ayam yang terinfeksi harus segera diisolasi dari ayam lainnya untuk mencegah penyebaran penyakit."
+  ],
+  3: [
+    "Poin 1: Langkah pertama penanganan penyakit 3",
+    "Poin 2: Langkah kedua penanganan penyakit 3",
+    "Poin 3: Langkah ketiga penanganan penyakit 3"
+  ]
+}
+
 let imageLoaded = false;
 $('#image-selector').change(function () {
   imageLoaded = false;
@@ -9,6 +40,7 @@ $('#image-selector').change(function () {
     $("#placeholder-result-image").attr("hidden",true);
     
     $('#prediction-list').empty();
+    $('#predictions-list').empty();
     $('#prediction-diagnosis').empty();
     imageLoaded = true;
   };
@@ -62,6 +94,8 @@ $('#predict-button').click(async function () {
   $("#placeholder-result-prediksi").attr("hidden",true);
   $("#loading-result-image").attr("hidden",false);
   $("#result-image-container").attr("hidden",false);
+  $("#placeholder-predictions").attr("hidden",true);
+  $("#predictions").attr("hidden",false);
   // Pre-process the image
   let tensor = tf.browser
     .fromPixels(image, 3)
@@ -229,10 +263,15 @@ $('#predict-button').click(async function () {
             break;
         }
         $('#prediction-diagnosis').append(
-          `<p class="text-black font-black font-medium"> Kondisi Kesehatan: ${hasil} </p>`
+          `<li class="text-black font-black font-medium"> Kondisi Kesehatan: ${hasil} </li>`
         );
+        rekomendasi_penanganan[hasil_encode].forEach((val) => {
+          console.log(val)
+          $('#predictions-list').append(
+            `<li class="text-black"> - ${val} </li>`
+          )
+        })
       },
     });
-  }
-  
+}
 });
