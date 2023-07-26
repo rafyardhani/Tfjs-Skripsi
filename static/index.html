@@ -9,115 +9,45 @@
       content="Use the power of Machine Learning to diagnose TB from chest x-rays."
     />
 
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
-  </head>
-  <body>
-    <div class="h-screen flex flex-col bg-white">
-      <!-- Header -->
-      <nav
-        class="w-full flex justify-start bg-[#F29C38] items-center gap-10 p-4"
-      >
-        <a
-          class="font-bold text-2xl text-white hover:no-underline"
-          href="/index.html"
-          >Poop Detector</a
-        >
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+			integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<style>
+			body {
+				min-height: 75rem;
+				padding-top: 4.5rem;
+			}
 
-        <a class="font-medium text-xl text-white hover:no-underline" href="#"
-          >Home</a
-        >
-      </nav>
+			.bd-placeholder-img {
+				font-size: 1.125rem;
+				text-anchor: middle;
+				-webkit-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+			}
 
-      <!-- Body -->
-      <div class="flex flex-col gap-4 p-4">
-        <div class="flex flex-col gap-2">
-          <p class="font-medium text-xl text-black">Upload Kotoran Ayam</p>
-          <div class="flex w-full text-lg font-medium gap-4 md:flex-row flex-col">
-            <div class="rounded-xl flex gap-2 px-4 py-2 w-full flex-1 border">
-              <input
-                type="file"
-                id="image-selector"
-                class="file:border-2 file:mr-5 file:cursor-pointer hover:opacity-50 hover:transition hover:transition-all file:py-2 file:px-6 file:border-0 file:text-sm file:font-medium file:border-dashed file:border-[#F29C38] file:bg-white file:rounded-lg file:text-[#F29C38]"
-              />
-            </div>
-            <button
-              id="predict-button"
-              type="button"
-              class="px-10 py-2 bg-[#F29C38] text-white rounded-full hover:bg-opacity-80 transition transition-all"
-            >
-              Submit
-            </button>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-2 gap-10 mt-8">
-          <div class="flex flex-col gap-2">
-            <p class="font-medium text-lg">Citra</p>
-
-            <!-- Temporary Active Empty State -->
-            <div
-              id="placeholder-result-image"
-              class="rounded-xl bg-white border border-[#F29C38] flex justify-center items-center text-[#9E9E9E] text-lg h-[400px]"
-            >
-              Belum ada gambar
-            </div>
-
-            <!-- Temporary Hidden Active State -->
-            <img
-            hidden
-              id="result-image"
-              class="rounded-xl bg-white border border-[#F29C38] object-fit h-[400px]"
-            />
-          </div>
-          <div class="flex flex-col gap-2">
-            <p class="font-medium text-lg">Prediksi</p>
-
-            <!-- Temporary Hidden Empty State -->
-            <div
-              id="placeholder-result-prediksi"
-              class="rounded-xl bg-white border border-[#F29C38] flex justify-center items-center text-[#9E9E9E] text-lg h-[400px]"
-            >
-              Belum ada prediksi
-            </div>
-
-            <!-- Temporary Hidden Loading State -->
-            <div
-              id="loading-result-image"
-              hidden
-              class="rounded-xl bg-white border border-[#F29C38] flex flex-col gap-2 justify-center items-center text-[#9E9E9E] text-lg h-[400px]"
-            >
-              <div
-                class="border-t-transparent border-solid animate-spin rounded-full border-[#F29C38] border-2 h-8 w-8"
-              ></div>
-              <p class="text-[#9E9E9E] text-sm">Memproses hasil...</p>
-            </div>
-
-            <!-- Temporary Active State -->
-            <div
-              id="result-image-container"
-              hidden
-              class="rounded-xl bg-white border border-[#F29C38] flex flex-col justify-start items-start text-[#9E9E9E] text-lg p-8 h-[400px]"
-            >
-              <ul id="prediction-list" class="flex flex-col gap-2"></ul>
-              <div id="prediction-diagnosis" class="flex flex-col gap-2"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <footer class="w-full flex justify-center items-center mt-20">
-        <p class="text-sm text-sm text-[#F29C38]">
-          Made by <span class="font-medium">Rafy</span>
-        </p>
-      </footer>
-    </div>
-
-    <!-- <main role="main" class="container mt-5">
+			@media (min-width: 768px) {
+				.bd-placeholder-img-lg {
+					font-size: 3.5rem;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+			<a class="navbar-brand" href="/index.html">Poop Detector</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarCollapse">
+				<ul class="navbar-nav mr-auto">
+				<li class="nav-item">
+					<a class="nav-link" href="/index.html">Home <span class="sr-only">(current)</span></a>
+				</li>
+			</div>
+		</nav>
+		
+		<main role="main" class="container mt-5">
 			<div class="row">
 				<div class="col-12">
 					<div class="progress progress-bar progress-bar-striped progress-bar-animated mb-2">Loading Model</div>
