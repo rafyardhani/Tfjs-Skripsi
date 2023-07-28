@@ -18,7 +18,7 @@ rekomendasi_penanganan = {
   2: [
     "Membuat kondisi badan ayam cepat membaik dan merangsang nafsu makannya dengan memberikan tambahan vitamin dan mineral.",
     "Mencegah infeksi sekunder dengan pemberian antibiotik.",
-    "Pencegahan   penyakit  dapat  dilakukan  dengan  vaksinasi  secara   teratur.",
+    "Pencegahan penyakit  dapat  dilakukan  dengan  vaksinasi  secara   teratur.",
     "Menjaga kebersihan dan sanitasi kandang.",
     "Ayam yang terinfeksi harus segera diisolasi dari ayam lainnya untuk mencegah penyebaran penyakit."
   ],
