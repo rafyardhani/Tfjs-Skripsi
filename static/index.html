@@ -41,6 +41,7 @@
             <div class="rounded-xl flex gap-2 px-4 py-2 w-full flex-1 border">
               <input
                 type="file"
+                accept="image/png, image/jpeg"
                 id="image-selector"
                 class="file:border-2 file:mr-5 file:cursor-pointer hover:opacity-50 hover:transition hover:transition-all file:py-2 file:px-6 file:border-0 file:text-sm file:font-medium file:border-dashed file:border-[#F29C38] file:bg-white file:rounded-lg file:text-[#F29C38]"
               />
@@ -56,40 +57,38 @@
         </div>
 
         <div class="grid grid-cols-2 gap-10 mt-8">
-          <div class="flex flex-col gap-2">
+          <div class="flex flex-col flex-row-2 gap-2">
             <p class="font-medium text-lg">Citra</p>
 
             <!-- Temporary Active Empty State -->
             <div
               id="placeholder-result-image"
-              class="rounded-xl bg-white border border-[#F29C38] flex justify-center items-center text-[#9E9E9E] text-lg h-[400px]"
+              class="rounded-xl bg-white border border-[#F29C38] flex justify-center items-center text-[#9E9E9E] text-lg h-[200px]"
             >
-              Belum ada gambar
+              <center>Belum ada gambar</center>
             </div>
 
             <!-- Temporary Hidden Active State -->
             <img
             hidden
               id="result-image"
-              class="rounded-xl bg-white border border-[#F29C38] object-fit h-[400px]"
+              class="rounded-xl bg-white border border-[#F29C38] h-[200px] flex object-contain"
             />
-          </div>
-          <div class="flex flex-col gap-2">
             <p class="font-medium text-lg">Prediksi</p>
 
             <!-- Temporary Hidden Empty State -->
             <div
               id="placeholder-result-prediksi"
-              class="rounded-xl bg-white border border-[#F29C38] flex justify-center items-center text-[#9E9E9E] text-lg h-[400px]"
+              class="rounded-xl bg-white border border-[#F29C38] flex justify-center items-center text-[#9E9E9E] text-lg h-[200px]"
             >
-              Belum ada prediksi
+              <center>Belum ada prediksi</center>
             </div>
 
             <!-- Temporary Hidden Loading State -->
             <div
               id="loading-result-image"
               hidden
-              class="rounded-xl bg-white border border-[#F29C38] flex flex-col gap-2 justify-center items-center text-[#9E9E9E] text-lg h-[400px]"
+              class="rounded-xl bg-white border border-[#F29C38] flex flex-col gap-2 justify-center items-center text-[#9E9E9E] text-lg h-[200px]"
             >
               <div
                 class="border-t-transparent border-solid animate-spin rounded-full border-[#F29C38] border-2 h-8 w-8"
@@ -101,29 +100,27 @@
             <div
               id="result-image-container"
               hidden
-              class="rounded-xl bg-white border border-[#F29C38] flex flex-col justify-start items-start text-[#9E9E9E] text-lg p-8 h-[400px]"
+              class="rounded-xl bg-white border border-[#F29C38] flex flex-col break-words overflow-auto justify-start object-fit items-start text-[#9E9E9E] text-lg p-8 h-[200px]"
             >
-              <ul id="prediction-list" class="flex flex-col gap-2"></ul>
-              <ul id="prediction-diagnosis" class="flex flex-col gap-2"></ul>
+              <ul id="prediction-list" class="flex flex-col gap-2 object-fit break-words"></ul>
+              <ul id="prediction-diagnosis" class="flex flex-col gap-2 object-fit break-words"></ul>
             </div>
           </div>
-          
-            <div class="flex flex-col gap-10 col-span-2">
-              <p class="font-medium text-lg">Rekomendasi Penanganan</p>
+          <div class="flex flex-col gap-2">
+            <p class="font-medium text-lg">Penanganan</p>
             <div
               id="placeholder-predictions"
-              class="rounded-xl bg-white border border-[#F29C38] flex justify-center items-center text-[#9E9E9E] text-lg h-[400px]"
+              class="rounded-xl bg-white border border-[#F29C38] flex justify-center items-center text-[#9E9E9E] text-lg h-[450px]"
             >
-              Belum ada prediksi
+              <center>Belum ada prediksi</center>
             </div>
             <div
               hidden
               id="predictions"
-              class="rounded-xl bg-white border border-[#F29C38] flex justify-center items-center text-[#9E9E9E] text-lg h-[400px]"
+              class="rounded-xl bg-white border border-[#F29C38] flex justify-center overflow-auto object-fit items-start text-[#9E9E9E] text-lg h-[450px]"
             >
-            <ul id="predictions-list" class="flex flex-col gap-2"></ul>
-            </div>
-         
+            <ul id="predictions-list" class="flex flex-col gap-2 object-fit"></ul>
+          </div>
         </div>
       </div>
 

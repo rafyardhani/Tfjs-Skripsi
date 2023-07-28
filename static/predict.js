@@ -121,13 +121,13 @@ $('#predict-button').click(async function () {
   top5.forEach(function (p) {
     if (p.probability < 0.93) {
       $('#prediction-list').append(
-        `<li class="text-black font-black font-medium">Warna: Tidak Diketahui</li>`
+        `<li class="text-black ">Warna: Tidak Diketahui</li>`
       );
     } else {
       $('#prediction-list').append(
-        `<li class="text-black font-black font-medium">Warna: ${
+        `<li class="text-black ">Warna: ${
           p.className
-        }: ${p.probability.toFixed(6)}</li>`
+        }: ${p.probability.toFixed(5)*100}%</li>`
       );
     }
     
@@ -152,13 +152,13 @@ $('#predict-button').click(async function () {
   topbentuk.forEach(function (p) {
     if (p.probabilitybentuk < 0.93) {
       $('#prediction-list').append(
-        `<li class="text-black font-black font-medium">Bentuk: Tidak Diketahui</li>`
+        `<li class="text-black ">Bentuk: Tidak Diketahui</li>`
       );
     } else {
       $('#prediction-list').append(
-        `<li class="text-black font-black font-medium">Bentuk: ${
+        `<li class="text-black ">Bentuk: ${
           p.className
-        }: ${p.probabilitybentuk.toFixed(6)}</li>`
+        }: ${p.probabilitybentuk.toFixed(5)*100}%</li>`
       );
     }
     
@@ -182,13 +182,13 @@ $('#predict-button').click(async function () {
   topkristal.forEach(function (p) {
     if (p.probabilitykristal < 0.93) {
       $('#prediction-list').append(
-        `<li class="text-black font-black font-medium"> Kristal: Tidak Diketahui</li>`
+        `<li class="text-black "> Kristal: Tidak Diketahui</li>`
       );
     } else {
       $('#prediction-list').append(
-        `<li class="text-black font-black font-medium"> Kristal: ${
+        `<li class="text-black "> Kristal: ${
           p.className
-        }: ${p.probabilitykristal.toFixed(6)}</li>`
+        }: ${p.probabilitykristal.toFixed(5)*100}%</li>`
       );
     }
     
@@ -197,7 +197,7 @@ $('#predict-button').click(async function () {
   });
   if (rate_warna < 0.93 || rate_bentuk < 0.93 || rate_kristal < 0.93) {
     $('#prediction-diagnosis').append(
-      `<p class="text-black font-black font-medium"> Harap Masukkan Citra Kotoran Ayam Yang lebih jelas </p>`
+      `<p class="text-black "> Harap Masukkan Citra Kotoran Ayam Yang lebih jelas </p>`
     );
   } else {
     switch (warna) {
@@ -263,10 +263,10 @@ $('#predict-button').click(async function () {
             break;
         }
         $('#prediction-diagnosis').append(
-          `<li class="text-black font-black font-medium"> Kondisi Kesehatan: ${hasil} </li>`
+          `<li class="text-black ">Kondisi Kesehatan: ${hasil} </li>`
         );
         rekomendasi_penanganan[hasil_encode].forEach((val) => {
-          console.log(val)
+          // console.log(val)
           $('#predictions-list').append(
             `<li class="text-black"> - ${val} </li>`
           )
