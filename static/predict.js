@@ -11,9 +11,13 @@ rekomendasi_penanganan = {
     "Terdapat banyak sediaan yang dapat digunakan untuk mengobati Coccidiosis pada unggas antara lain amprolium, clopidol, asam folat antagonis, halofuginone hydrobromida, ionophore, nicarbazine, nitrobenzamida, sulfaquinoxalin dan robenidine."
   ],
   1: [
-    "Poin 1: Langkah pertama penanganan penyakit 2",
-    "Poin 2: Langkah kedua penanganan penyakit 2",
-    "Poin 3: Langkah ketiga penanganan penyakit 2"
+    "Pemberian pakan berkualitas",
+    "Air bersih dan segar",
+    "Jaga kebersihan kandang secara teratur dengan membersihkan kotoran, sisa makanan, dan bahan organik lainnya.",
+    "Terapkan langkah-langkah biosekuriti yang ketat untuk mencegah masuknya penyakit dari luar ke kandang ayam Anda.",
+    "Hindari perubahan lingkungan yang drastis, seperti perpindahan kandang atau pergantian grup ayam yang terlalu sering.",
+    "Pastikan kandang dan lingkungan ayam memberikan kenyamanan dan perlindungan dari cuaca ekstrem."
+
   ],
   2: [
     "Membuat kondisi badan ayam cepat membaik dan merangsang nafsu makannya dengan memberikan tambahan vitamin dan mineral.",
@@ -23,9 +27,10 @@ rekomendasi_penanganan = {
     "Ayam yang terinfeksi harus segera diisolasi dari ayam lainnya untuk mencegah penyebaran penyakit."
   ],
   3: [
-    "Poin 1: Langkah pertama penanganan penyakit 3",
-    "Poin 2: Langkah kedua penanganan penyakit 3",
-    "Poin 3: Langkah ketiga penanganan penyakit 3"
+    "Penyuntikan antibiotik seperti cocillin, neo terramycin ke dada ayam, namun obat-obat ini hanya efektif untuk pencegahan kematian anak ayam, tetapi tidak dapat menghilangkan penyakit tersebut. ",
+    "Sebaiknya ayam yang sudah terlanjur terinfeksi parah dimusnahkan untuk menghindari adanya carrier yang bersifat kronis. ",
+    "Sebelum kandang dipakai harus dibersihkan dan dilabur dengan kapur atau disemprot dengan salah satu diantara NaOH 2%, formalin 1-2% Giocide atau difumigasi dengan campuran formalin dan KMn04. Bila memakai litter, harus diusahakan agar tetap kering dan tetap dijaga kebersihan serta ventilasi yang baik. ",
+    "Kandang hendaknya selalu kena sinar matahari dan diusahakan bebas dari hewan-hewan yang dapat memindahkan penyakit pullorum seperti burung gereja dan sebagainya."
   ]
 }
 
@@ -44,9 +49,15 @@ $('#image-selector').change(function () {
     $('#prediction-diagnosis').empty();
     imageLoaded = true;
   };
-
   let file = $('#image-selector').prop('files')[0];
-  reader.readAsDataURL(file);
+  
+  if (!file.type.startsWith('image/')) {
+    alert('Tipe file yang dipilih bukan gambar.');
+    imageLoaded = false;
+    return ;
+  }else{
+    reader.readAsDataURL(file);
+  }
 });
 
 let model;

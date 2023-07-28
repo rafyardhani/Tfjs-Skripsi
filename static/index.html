@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>TensorFlow.js: Feature Extraction</title>
+    <title>Deteksi Penyakit Ayam</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
@@ -25,11 +25,11 @@
         <a
           class="font-bold text-2xl text-white hover:no-underline"
           href="/index.html"
-          >Poop Detector</a
+          >Deteksi Penyakit</a
         >
 
         <a class="font-medium text-xl text-white hover:no-underline" href="/index.html"
-          >Home</a
+          >Beranda</a
         >
       </nav>
 
@@ -56,8 +56,8 @@
           </div>
         </div>
 
-        <div class="grid grid-cols-2 gap-10 mt-8">
-          <div class="flex flex-col flex-row-2 gap-2">
+        <div class="grid-cols-2 gap-5 flex">
+          <div class="flex flex-col flex-row-2 gap-2 w-[400px]">
             <p class="font-medium text-lg">Citra</p>
 
             <!-- Temporary Active Empty State -->
@@ -106,7 +106,7 @@
               <ul id="prediction-diagnosis" class="flex flex-col gap-2 object-fit break-words"></ul>
             </div>
           </div>
-          <div class="flex flex-col gap-2">
+          <div class="flex flex-col gap-2 w-full">
             <p class="font-medium text-lg">Penanganan</p>
             <div
               id="placeholder-predictions"
@@ -117,9 +117,9 @@
             <div
               hidden
               id="predictions"
-              class="rounded-xl bg-white border border-[#F29C38] flex justify-start overflow-auto object-fit items-start text-[#9E9E9E] text-lg h-[450px]"
+              class="rounded-xl bg-white border border-[#F29C38] flex flex-col break-words overflow-auto justify-start object-fit items-start text-[#9E9E9E] text-lg p-8 h-[450px]"
             >
-            <ul id="predictions-list" class="flex flex-col gap-2 object-fit"></ul>
+            <ul id="predictions-list" class="flex flex-col gap-2 object-fit break-words text-justify"></ul>
           </div>
         </div>
       </div>
