@@ -284,7 +284,7 @@ $('#predict-button').click(async function () {
       data: JSON.stringify({
         features: [warna_encode, bentuk_encode, kristal_encode],
       }),
-      url: 'http://127.0.0.1:5000/predict',
+      url: 'http://ec2-54-95-118-77.ap-northeast-1.compute.amazonaws.com/predict',
       beforeSend: function () {
         $('#loading-result-image').show();
       },
