@@ -16,8 +16,7 @@
       crossorigin="anonymous"
     />
   </head>
-  <body>
-    <div class="h-screen flex flex-col bg-white">
+  <body class="relative">
       <!-- Header -->
       <nav
         class="w-full flex justify-start bg-[#F29C38] items-center gap-10 p-4"
@@ -43,7 +42,10 @@
                 type="file"
                 accept="image/png, image/jpeg"
                 id="image-selector"
-                class="file:border-2 file:mr-5 file:cursor-pointer hover:opacity-50 hover:transition hover:transition-all file:py-2 file:px-6 file:border-0 file:text-sm file:font-medium file:border-dashed file:border-[#F29C38] file:bg-white file:rounded-lg file:text-[#F29C38]"
+                capture="environment" 
+                class="file:border-2 file:mr-5 file:cursor-pointer hover:opacity-50 hover:transition hover:transition-all 
+                file:py-2 file:px-6 file:border-0 file:text-sm file:font-medium file:border-dashed file:border-[#F29C38] 
+                file:bg-white file:rounded-lg file:text-[#F29C38]"
               />
             </div>
             <button
@@ -51,13 +53,13 @@
               type="button"
               class="px-10 py-2 bg-[#F29C38] text-white rounded-full hover:bg-opacity-80 transition transition-all"
             >
-              Submit
+              Diagnosa
             </button>
           </div>
         </div>
 
         <div class="grid-cols-2 gap-5 flex">
-          <div class="flex flex-col flex-row-2 gap-2 w-[400px]">
+          <div class="flex flex-col flex-row-2 gap-2 w-[200px]">
             <p class="font-medium text-lg">Citra</p>
 
             <!-- Temporary Active Empty State -->
@@ -72,7 +74,7 @@
             <img
             hidden
               id="result-image"
-              class="rounded-xl bg-white border border-[#F29C38] h-[200px] flex object-contain"
+              class="rounded-xl bg-white border border-[#F29C38] h-[200px] w-[200px] flex object-contain"
             />
             <p class="font-medium text-lg">Prediksi</p>
 
@@ -100,7 +102,7 @@
             <div
               id="result-image-container"
               hidden
-              class="rounded-xl bg-white border border-[#F29C38] flex flex-col break-words overflow-auto justify-start object-fit items-start text-[#9E9E9E] text-lg p-8 h-[200px]"
+              class="rounded-xl bg-white border border-[#F29C38] flex flex-col break-words overflow-x-auto justify-start object-fit items-start text-[#9E9E9E] text-lg p-8 h-[200px]"
             >
               <ul id="prediction-list" class="flex flex-col gap-2 object-fit break-words"></ul>
               <ul id="prediction-diagnosis" class="flex flex-col gap-2 object-fit break-words"></ul>
@@ -123,7 +125,19 @@
           </div>
         </div>
       </div>
-
+    </div>
+    <div class="h-screen flex flex-col bg-white">
+      <div id="overlay-modal" hidden class="transition transition-all ease-in-out duration-300 inset-0 fixed flex flex-col justify-center items-center bg-black bg-opacity-20">
+        <div class="bg-white p-10 rounded shadow flex flex-col ">
+            <p class="text-black">Masukkan terlebih dahulu citra</p>
+        </div>
+      </div>
+      <div id="overlay-modal-predict" hidden class="inset-0 fixed flex flex-col justify-center items-center bg-black bg-opacity-20">
+        <div class="bg-white p-10 rounded shadow flex flex-col ">
+          <ul id="predict-list" class="flex flex-col gap-2 object-fit break-words"></ul>
+              <ul id="predict-diagnosis" class="flex flex-col gap-2 object-fit break-words"></ul>
+        </div>
+      </div>
       <footer class="w-full flex justify-center items-center mt-20">
         <p class="text-sm text-sm text-[#F29C38]">
           Made With <span class="font-medium">Love</span>

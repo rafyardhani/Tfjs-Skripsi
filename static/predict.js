@@ -44,9 +44,7 @@ $('#image-selector').change(function () {
     $("#result-image").attr("hidden",false);
     $("#placeholder-result-image").attr("hidden",true);
     
-    $('#prediction-list').empty();
-    $('#predictions-list').empty();
-    $('#prediction-diagnosis').empty();
+    
     imageLoaded = true;
   };
   let file = $('#image-selector').prop('files')[0];
@@ -90,13 +88,21 @@ $(document).ready(async function () {
   modelLoadedkristal = true;
 });
 
+$('#overlay-modal').click(async function(){
+  $("#overlay-modal").attr("hidden",true);
+})
 $('#predict-button').click(async function () {
+  $('#prediction-list').empty();
+  $('#predictions-list').empty();
+  $('#prediction-diagnosis').empty();
+  $('#predict-list').empty();
+  $('#predict-diagnosis').empty();
   if (!modelLoaded) {
     alert('The model must be loaded first');
     return;
   }
   if (!imageLoaded) {
-    alert('Please select an image first');
+    $("#overlay-modal").attr("hidden",false);
     return;
   }
   $('#prediction-diagnosis').empty();
@@ -134,8 +140,16 @@ $('#predict-button').click(async function () {
       $('#prediction-list').append(
         `<li class="text-black ">Warna: Tidak Diketahui</li>`
       );
+      $('#predict-list').append(
+        `<li class="text-black ">Warna: Tidak Diketahui</li>`
+      );
     } else {
       $('#prediction-list').append(
+        `<li class="text-black ">Warna: ${
+          p.className
+        }: ${p.probability.toFixed(5)*100}%</li>`
+      );
+      $('#predict-list').append(
         `<li class="text-black ">Warna: ${
           p.className
         }: ${p.probability.toFixed(5)*100}%</li>`
@@ -165,8 +179,16 @@ $('#predict-button').click(async function () {
       $('#prediction-list').append(
         `<li class="text-black ">Bentuk: Tidak Diketahui</li>`
       );
+      $('#predict-list').append(
+        `<li class="text-black ">Bentuk: Tidak Diketahui</li>`
+      );
     } else {
       $('#prediction-list').append(
+        `<li class="text-black ">Bentuk: ${
+          p.className
+        }: ${p.probabilitybentuk.toFixed(5)*100}%</li>`
+      );
+      $('#predict-list').append(
         `<li class="text-black ">Bentuk: ${
           p.className
         }: ${p.probabilitybentuk.toFixed(5)*100}%</li>`
@@ -195,8 +217,16 @@ $('#predict-button').click(async function () {
       $('#prediction-list').append(
         `<li class="text-black "> Kristal: Tidak Diketahui</li>`
       );
+      $('#predict-list').append(
+        `<li class="text-black "> Kristal: Tidak Diketahui</li>`
+      );
     } else {
       $('#prediction-list').append(
+        `<li class="text-black "> Kristal: ${
+          p.className
+        }: ${p.probabilitykristal.toFixed(5)*100}%</li>`
+      );
+      $('#predict-list').append(
         `<li class="text-black "> Kristal: ${
           p.className
         }: ${p.probabilitykristal.toFixed(5)*100}%</li>`
@@ -208,6 +238,9 @@ $('#predict-button').click(async function () {
   });
   if (rate_warna < 0.93 || rate_bentuk < 0.93 || rate_kristal < 0.93) {
     $('#prediction-diagnosis').append(
+      `<p class="text-black "> Harap Masukkan Citra Kotoran Ayam Yang lebih jelas </p>`
+    );
+    $('#predict-diagnosis').append(
       `<p class="text-black "> Harap Masukkan Citra Kotoran Ayam Yang lebih jelas </p>`
     );
   } else {
@@ -276,6 +309,9 @@ $('#predict-button').click(async function () {
         $('#prediction-diagnosis').append(
           `<li class="text-black ">Kondisi Kesehatan: ${hasil} </li>`
         );
+        $('#predict-diagnosis').append(
+          `<li class="text-black ">Kondisi Kesehatan: ${hasil} </li>`
+          );
         rekomendasi_penanganan[hasil_encode].forEach((val) => {
           // console.log(val)
           $('#predictions-list').append(
@@ -284,5 +320,10 @@ $('#predict-button').click(async function () {
         })
       },
     });
+    
 }
+    $("#overlay-modal-predict").attr("hidden",false);
+    $('#overlay-modal-predict').click(async function(){
+      $("#overlay-modal-predict").attr("hidden",true);
+    })
 });
